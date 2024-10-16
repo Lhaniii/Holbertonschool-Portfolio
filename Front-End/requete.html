@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Requests</title>
+</head>
+<body>
+    <h1>API Requests</h1>
+
+    <!-- Registration Form -->
+    <h2>Register</h2>
+    <form action="http://localhost:8888/register" method="POST">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+
+        <label for="role">Role:</label>
+        <select id="role" name="role">
+            <option value="freelance">Freelance</option>
+            <option value="client">Client</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <!-- Login Form -->
+    <h2>Login</h2>
+    <form action="http://localhost:8888/login" method="POST">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        
+        <button type="submit">Login</button>
+    </form>    
+
+    <!-- Update Freelance Info Form -->
+    <h2>Update Freelance Information</h2>
+    <form action="http://localhost:8888/update_freelance_info" method="POST">
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="skills">Skills:</label>
+        <input type="text" id="skills" name="skills" required>
+
+        <input type="hidden" name="user_id" value="1"> <!-- Replace dynamically -->
+
+        <button type="submit">Update Info</button>
+    </form>
+
+    <!-- View Freelancers -->
+    <h2>View Freelancers</h2>
+    <form action="http://localhost:8888/freelances" method="GET">
+        <button type="submit">View Freelancers</button>
+    </form>
+
+</body>
+</html>
