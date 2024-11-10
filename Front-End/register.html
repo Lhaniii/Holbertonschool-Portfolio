@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <!-- Sidebar navigation -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="freelancers.html">Freelancers List</a></li>
+                <li><a href="clients.html">Clients List</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content area -->
+    <div class="main-content">
+        <!-- Banner section -->
+        <header class="banner">
+            <h1>Create Your Account</h1>
+            <p class="subtitle">Register as a freelancer or client</p>
+        </header>
+
+        <!-- Registration form -->
+        <section>
+            <form id="registration-form">
+                <label for="username">Name:</label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="role">Role:</label>
+                <select id="role" name="role" required>
+                    <option value="freelance">Freelance</option>
+                    <option value="client">Client</option>
+                </select>
+
+                <div id="skills-section" style="display: none;">
+                    <label for="skills">Skills:</label>
+                    <input type="text" id="skills" name="skills">
+                </div>
+
+                <button type="button" onclick="submitRegistration()">Register</button>
+            </form>
+
+            <!-- Success or error message display -->
+            <div id="response-message"></div>
+        </section>
+    </div>
+
+    <script>
+        // Show skills field only for freelancers
+        document.getElementById("role").addEventListener("change", function() {
+            document.getElementById("skills-section").style.display = this.value === "freelance" ? "block" : "none";
+        });
+
+        // Handle form submission with fetch API
+        function submitRegistration() {
+            const formData = new FormData(document.getElementById("registration-form"));
+
+            fetch("http://localhost:8888/register", {
+                method: "POST",
+                body: new URLSearchParams(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.text(); // Success response text
+                } else {
+                    throw new Error("Server connection error.");
+                }
+            })
+            .then(message => {
+                document.getElementById("response-message").innerHTML = `<p style="color: green;">${message}</p>`;
+                // Redirect to login after 2 seconds
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 2000);
+            })
+            .catch(error => {
+                document.getElementById("response-message").innerHTML = `<p style="color: red;">${error.message}</p>`;
+            });
+        }
+    </script>
+</body>
+</html>

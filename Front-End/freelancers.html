@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freelancers List</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the CSS file -->
+</head>
+<body>
+    <!-- Sidebar navigation -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="freelancers.html">Freelancers List</a></li>
+                <li><a href="clients.html">Clients List</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content area -->
+    <div class="main-content">
+        <!-- Top banner section -->
+        <header class="banner">
+            <h1>Freelancers List</h1>
+            <p class="subtitle">Discover available freelancers</p>
+        </header>
+
+        <!-- Section where the freelancers list will be displayed -->
+        <section class="freelancer-list" id="freelancer-list">
+            <p>Loading freelancers...</p> <!-- Loading message until data is fetched -->
+        </section>
+    </div>
+
+    <script>
+        // JavaScript to dynamically load the list of freelancers
+        window.onload = function() {
+            fetch("http://localhost:8888/freelancers") // API request to load freelancers
+                .then(response => {
+                    if (!response.ok) { // If response status is not "OK"
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Insert fetched data into the freelancer list section
+                    document.getElementById("freelancer-list").innerHTML = data;
+                })
+                .catch(error => {
+                    // Display an error message on both console and the page
+                    console.error("Error loading freelancers:", error);
+                    document.getElementById("freelancer-list").innerHTML = `<p>Failed to load freelancers: ${error.message}</p>`;
+                });
+        };
+    </script>
+</body>
+</html>

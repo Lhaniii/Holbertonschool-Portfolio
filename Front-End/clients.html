@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Clients</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to CSS file -->
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="freelancers.html">Liste Indépendant</a></li>
+                <li><a href="clients.html">Liste des clients</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Banner at the top -->
+        <header class="banner">
+            <h1>Liste des Clients</h1>
+            <p class="subtitle">Découvrez nos clients disponibles</p>
+        </header>
+
+        <!-- Section for displaying the list of clients -->
+        <section class="client-list" id="client-list">
+            <p>Chargement des clients...</p> <!-- Loading message -->
+        </section>
+    </div>
+
+    <script>
+        // JavaScript to dynamically load clients from the API
+        window.onload = function() {
+            fetch("http://localhost:8888/clients") // Request to the API endpoint
+                .then(response => {
+                    if (!response.ok) { // Check if the response status is "OK"
+                        throw new Error(`HTTP Error! Status: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Display the data in the client list section
+                    document.getElementById("client-list").innerHTML = data;
+                })
+                .catch(error => {
+                    // Show an error message in the console and on the page
+                    console.error("Error loading clients:", error);
+                    document.getElementById("client-list").innerHTML = `<p>Failed to load clients: ${error.message}</p>`;
+                });
+        };
+    </script>
+</body>
+</html>
