@@ -15,8 +15,9 @@ DevLink est une plateforme de mise en relation entre freelances et clients. Con�
 *libmicrohttpd* : Pour la gestion des requêtes HTTP dans l'API.
 *libmysqlclient* : Pour la connexion à la base de données MySQL.
 
-**Étapes d'installation**
-Cloner le dépôt :
+### Étapes d'installation
+
+*Cloner le dépôt* :
 
 ```
 git clone <URL_du_dépôt>
@@ -24,22 +25,22 @@ cd DevLink
 
 ``` 
 
-Configurer la base de données :
+*Configurer la base de données* :
 Créez une base de données devlink dans MySQL.
 
-Configurez les tables nécessaires :
+*Configurez les tables nécessaires* :
 
 users : Contient les informations des utilisateurs (username, email, password, role).
 freelances et clients : Tables spécifiques aux rôles avec des champs comme l’âge et les compétences pour les freelances.
 
-Compiler l'API :
+*Compiler l'API* :
 
 ```
 gcc -o devlink_api devlink_api.c -lmicrohttpd -lmysqlclient
 
 ``` 
 
-Lancer l'API :
+*Lancer l'API* :
 
 ``` 
 ./devlink_api
@@ -49,7 +50,7 @@ Lancer l'API :
 
 Le serveur HTTP de l'API est maintenant actif sur le port 8888.
 
-Lancer l'interface front-end :
+*Lancer l'interface front-end* :
 
 Ouvrez le fichier index.html dans un navigateur pour voir la page d’accueil.
 Le front-end utilise l'API pour afficher dynamiquement les informations sur les freelances et les clients.
@@ -57,18 +58,14 @@ Le front-end utilise l'API pour afficher dynamiquement les informations sur les 
 ## Usage
 
 ### Fonctionnalités principales
-Inscription des utilisateurs : Les utilisateurs peuvent s'inscrire en tant que freelance ou client. Les informations sont stockées dans la base de données MySQL.
+*Inscription des utilisateurs* : Les utilisateurs peuvent s'inscrire en tant que freelance ou client. Les informations sont stockées dans la base de données MySQL.
 
-Affichage des freelances : La liste des freelances est récupérée depuis la base de données et affichée sur la page dédiée.
+*Affichage des freelances* : La liste des freelances est récupérée depuis la base de données et affichée sur la page dédiée.
 
-Affichage des clients : La liste des clients est également récupérée et affichée de manière similaire.
+*Affichage des clients* : La liste des clients est également récupérée et affichée de manière similaire.
 
-Exemples de requêtes de l'API
+### Exemples de requêtes de l'API
 
-``` 
-POST /register
-
-``` 
 
 Enregistre un utilisateur en tant que freelance ou client.
 
@@ -80,9 +77,7 @@ Content-Type: application/x-www-form-urlencoded
 username=JohnDoe&email=johndoe%40example.com&password=secure123&role=freelance&age=30&skills=C%2C+Python
 ``` 
 
-GET /freelancers
 
-``` 
 Récupère la liste des freelances enregistrés.
 
 ``` 
@@ -97,11 +92,11 @@ GET /clients
 ``` 
 
 
-Related Projects
+## Related Projects
 Voici quelques projets similaires qui pourraient vous intéresser ou que vous pourriez utiliser comme référence :
 
 Upwork : Plateforme de freelances pour l'inspiration en termes de fonctionnalités avancées.
 Fiverr : Exemple de plateforme centrée sur des microservices et des interactions de type freelance-client.
 
-Licensing
+## Licensing
 Ce projet est sous licence MIT, ce qui signifie que vous êtes libre de le modifier et de le redistribuer.
